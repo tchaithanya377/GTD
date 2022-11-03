@@ -1,28 +1,24 @@
-from django.shortcuts import render
-from todo.forms import todoform, done
+from django.shortcuts import render,redirect
+from todo.forms import todoform, todoupdate
 from django.http import HttpResponse
 from todo.models import todo
+from django.views.generic.edit import UpdateView
 import time
 # Create your views here.
 
 def home(request):
     currentDate = time. strftime("%Y-%m-%d")
     if request.method == 'GET':
-        do = todo.objects.filter(date = currentDate)
+        do = todo.objects.filter(date = currentDate,complted = False )
         compileted = todo.objects.filter(complted = True)
         return render(request, 'home.html', {'data':do, 'com':compileted})
-    else:
-        don = done()
-        if don.is_valid():
-            don.save()
-    return render(request, 'home.html',{'form':don})
+    return render(request, 'home.html')
 
-def todoc(request):
+
+def todoupdate(request,pk):
     if request.method == 'POST':
-        form = todoform(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('created')
-    else:
-        form = todoform()
-    return render(request, 'today.html',{'form':form})
+        c = request.POST.get('come')
+        print(c)
+        todo.objects.filter(pk=pk).update(complted = c)
+        return redirect('home')
+    return render(request, 'todoupadate.html')

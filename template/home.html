@@ -79,23 +79,20 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <form method="post" novalidate>
                     {% if data %}
                     {%for data in data%}
                     {% csrf_token %}
-                    <h6><input type="checkbox" name="Completed"> {{data.task}}</h6>
+                    <a href= {%url 'update' data.id%}><h6>{{data.task}}</h6></a>
                     {%endfor%}
                     {% endif %}
-                    <button class="btn btn-outline-success">Done</button><br><br>
-                    </form>
-                    <button class="btn btn-outline-primary">Add Task</button>
+                    <a href={%url 'createtodo' %} class="btn btn-outline-primary">Add Task</a>
         </div>
         <br>
         <div> 
             <h1>Completed Task</h1>
             {% if com %}
             {%for com in com%}
-            <a href= {%url 'update' com.id%}><h6>{{com.task}}</h6></a>
+            <h6>{{com.task}}</h6>
             {%endfor%}
             {% endif %}
         </div>
