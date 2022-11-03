@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <title>Home</title>
+    <style>
+        .img{
+            min-height: 100%;
+            background-image: url("/static/bg.jpg");
+            background-size: cover;
+            }
+
+    </style>
+  </head>
+  <body> 
+<div class="img">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="/static/hbg.png" alt="home"; margin-left="30px"; width="35" height="30" class="d-inline-block align-text-top"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> <span>   </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    ToDo
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">Tomorrow</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Weekly</a></li>
+                </ul>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Ideas</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="margin-top:50-px">
+        <div style="width: 1750px; height: 212px; margin-top: 100px; margin-left: 30px; margin-right: 30px;">
+            <div style="width: 1750x; height: 312px; padding-top: 40px; padding-bottom: 44px; padding-left: 24px; background-color: rgba(69, 69, 69, 0.50); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 14px; display: flex; flex-direction: row; align-items: center; justify-content: flex-end;">
+                <p style="width: 1824px; height: 228px; font-size: 60px; font-style: italic; line-height: 100%; color: white;">“The secret of getting ahead is getting started. The secret of getting started is breaking your complex overwhelming tasks into small, manageable tasks, and then starting on the first one.”</p>
+            </div>
+        </div>
+    </div>
+<div>
+    <div style="width: 332px; height: 102px;margin-top: 150px;">
+        <div style="width: 332px; height: 102px; padding-top: 21px; padding-bottom: 21px; padding-left: 105px; padding-right: 73px; background-color: rgba(0, 0, 0, 0.56); border-top-right-radius: 50px; display: flex; flex-direction: row; align-items: center; justify-content: flex-end;">
+            <p style="width: 154px; height: 60px; font-size: 48px; line-height: 100%; color: white;">Goals</p>
+        </div>
+    </div>
+</div>
+<div>
+    <div style="margin: 50px;margin-left: 200px;width: 300px; height: 250px; background-color: rgba(0, 0, 0, 0.15); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+        <div class="center">
+            <p style="font-size: 48px;  color: white;margin: 20px;">Goal</p>
+            <p style="font-size: 48px; color: white; margin: 20px;">Goal</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="text-center">
+    <h1>To Do</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form method="post" novalidate>
+                    {% if data %}
+                    {%for data in data%}
+                    {% csrf_token %}
+                    <h6><input type="checkbox" name="Completed"> {{data.task}}</h6>
+                    {%endfor%}
+                    {% endif %}
+                    <button class="btn btn-outline-success">Done</button><br><br>
+                    </form>
+                    <button class="btn btn-outline-primary">Add Task</button>
+        </div>
+        <br>
+        <div> 
+            <h1>Completed Task</h1>
+            {% if com %}
+            {%for com in com%}
+            <a href= {%url 'update' com.id%}><h6>{{com.task}}</h6></a>
+            {%endfor%}
+            {% endif %}
+        </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+</body>
+</html>
