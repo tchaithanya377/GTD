@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'todo'
+    'todo',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -126,5 +127,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-# DEFAULT_FILTER_BACKENDS: ('rest_framework.filters.DjangoFilterBackend','rest_framework.filters.OrderingFilter',)

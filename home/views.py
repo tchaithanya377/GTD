@@ -1,24 +1,44 @@
 from django.shortcuts import render,redirect
-from todo.forms import todoform, todoupdate
 from django.http import HttpResponse
-from todo.models import todo
-from django.views.generic.edit import UpdateView
+from todo.models import todo, ideas_goals, notes
+
+from datetime import datetime, timedelta
 import time
 # Create your views here.
 
 def home(request):
-    currentDate = time. strftime("%Y-%m-%d")
+    currentDate = time.strftime("%Y-%m-%d")
     if request.method == 'GET':
-        do = todo.objects.filter(date = currentDate,complted = False )
-        compileted = todo.objects.filter(complted = True)
-        return render(request, 'home.html', {'data':do, 'com':compileted})
+        do = todo.objects.filter(date = currentDate,complted = False)
+        compileted = todo.objects.filter(date = currentDate,complted = True)
+        goal = ideas_goals.objects.all()
+        note = notes.objects.all() 
+        return render(request, 'home.html', {'data':do, 'com':compileted, 'goal':goal, 'notes':note})
     return render(request, 'home.html')
 
 
 def todoupdate(request,pk):
     if request.method == 'POST':
         c = request.POST.get('come')
-        print(c)
         todo.objects.filter(pk=pk).update(complted = c)
         return redirect('home')
     return render(request, 'todoupadate.html')
+
+def tomorrowtodo(request):
+    next_day = datetime.now()+timedelta(1)
+    if request.method == 'GET':
+        do = todo.objects.filter(date = next_day,complted = False)
+        return render(request, 'tomorrow.html', {'tomorrow':do})
+    return render(request, 'tomorrow.html')
+
+def weektodo(request):
+    currentDate = datetime.now()
+    week_day = datetime.now()+timedelta(7)
+    week = week_day.strftime("%Y-%m-%d")
+    if request.method == 'GET':
+        do = todo.objects.filter(date__range = [currentDate, week_day ])
+        return render(request, 'week.html', {'week':do})
+    return render(request, 'week.html')
+
+def successful(request):
+    return render(request,'successfully.html')
