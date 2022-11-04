@@ -20,6 +20,9 @@ from home import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='home'),
+    path('successful',views.successful, name='successful'),
+    path('tomorrow',views.tomorrowtodo, name='tomorrow'),
+    path('week',views.weektodo, name='week'),
     path('update/<pk>',views.todoupdate, name='update'),
     path('',include('todo.urls'))
 ]
