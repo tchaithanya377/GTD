@@ -15,6 +15,8 @@ class notes(models.Model):
     notes = models.TextField()
 
 
-class ideas_goals(models.Model):
+class ideas(models.Model):
     ideas = models.CharField(max_length = 100, blank = True,null=True)
+
+class goals(models.Model):
     goals = models.CharField(max_length = 100, blank = True,null=True)

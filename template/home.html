@@ -96,9 +96,9 @@
                 <div class="col">
                     <div>
                         <h1>Ideas</h1>
-                        {% if goal %}
-                        {%for goal in goal%}
-                        <a href= {%url 'updateideas' goal.id%}><h4>{{goal.ideas}}</h4></a>
+                        {% if idea %}
+                        {%for idea in idea%}
+                        <a href= {%url 'updateideas' idea.id%}><h4>{{idea.ideas}}</h4></a>
                         {%endfor%}
                         {% endif %}
                         <a href={%url 'createideas' %} class="btn btn-outline-primary">Add Ideas</a>

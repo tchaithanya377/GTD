@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from todo.models import todo, ideas_goals, notes
+from todo.models import todo, ideas,goals, notes
 
 from datetime import datetime, timedelta
 import time
@@ -11,9 +11,10 @@ def home(request):
     if request.method == 'GET':
         do = todo.objects.filter(date = currentDate,complted = False)
         compileted = todo.objects.filter(date = currentDate,complted = True)
-        goal = ideas_goals.objects.filter(ideas__isnull=False)
+        goal = goals.objects.all()
+        idea = ideas.objects.all()
         note = notes.objects.all() 
-        return render(request, 'home.html', {'data':do, 'com':compileted, 'goal':goal, 'notes':note})
+        return render(request, 'home.html', {'data':do, 'com':compileted, 'goal':goal, 'notes':note, 'idea':idea})
     return render(request, 'home.html')
 
 

@@ -1,6 +1,6 @@
 from django import forms
 from .models import todo
-from .models import notes, ideas_goals
+from .models import notes, ideas,goals
 
 class todoform(forms.ModelForm):
     class Meta:
@@ -32,7 +32,7 @@ class notesform(forms.ModelForm):
 class ideaform(forms.ModelForm):
     
     class Meta:
-        model = ideas_goals
+        model = ideas
         fields = ['ideas']
         widgets = {
             'ideas':forms.TextInput(attrs={
@@ -44,7 +44,7 @@ class ideaform(forms.ModelForm):
 class goalsform(forms.ModelForm):
     
     class Meta:
-        model = ideas_goals
+        model =goals
         fields = ['goals']
         widgets = {
             'goals':forms.TextInput(attrs={

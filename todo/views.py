@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
-from .models import todo, notes ,ideas_goals
+from .models import todo, notes ,ideas, goals
 from .forms import todoform,notesform, ideaform, goalsform
 # Create your views here.
 
@@ -23,7 +23,7 @@ class ideascreate(CreateView):
     success_url = '/successful'
 
 class ideasupdate(UpdateView):
-    model = ideas_goals
+    model = ideas
     form_class = ideaform
     template_name = 'idea.html'
     success_url = '/successful'
@@ -34,7 +34,7 @@ class goalscreate(CreateView):
     success_url = '/successful'
 
 class goalsupdate(UpdateView):
-    model = ideas_goals
+    model = goals
     form_class = goalsform
     template_name = 'goals.html'
     success_url = '/successful'
