@@ -23,6 +23,7 @@ urlpatterns = [
     path('successful',views.successful, name='successful'),
     path('tomorrow',views.tomorrowtodo, name='tomorrow'),
     path('week',views.weektodo, name='week'),
+    path('completed',views.completed, name='completed'),
     path('update/<pk>',views.todoupdate, name='update'),
     path('',include('todo.urls'))
 ]

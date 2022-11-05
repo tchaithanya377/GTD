@@ -46,6 +46,12 @@ class updatenotes(UpdateView):
     template_name = 'notes.html'
     success_url = '/'
 
+class updatetodo(UpdateView):
+    model = todo
+    form_class = todoform
+    template_name = 'today.html'
+    success_url = '/'
+
 class notes(ListView):
     model = notes
     template_name = 'notes_list.html'

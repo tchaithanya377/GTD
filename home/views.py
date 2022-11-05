@@ -11,7 +11,7 @@ def home(request):
     if request.method == 'GET':
         do = todo.objects.filter(date = currentDate,complted = False)
         compileted = todo.objects.filter(date = currentDate,complted = True)
-        goal = ideas_goals.objects.all()
+        goal = ideas_goals.objects.filter(ideas__isnull=False)
         note = notes.objects.all() 
         return render(request, 'home.html', {'data':do, 'com':compileted, 'goal':goal, 'notes':note})
     return render(request, 'home.html')
@@ -39,6 +39,12 @@ def weektodo(request):
         do = todo.objects.filter(date__range = [currentDate, week_day ])
         return render(request, 'week.html', {'week':do})
     return render(request, 'week.html')
+
+def completed(request):
+    if request.method == 'GET':
+        completed = todo.objects.filter(complted = True)
+        return render(request, 'completed.html', {'complete':completed})
+    return render(request, 'completed.html')
 
 def successful(request):
     return render(request,'successfully.html')

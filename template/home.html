@@ -48,6 +48,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Ideas</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Completed" tabindex="-1" aria-disabled="true">Completed Task</a>
+                </li>
                 </ul>
             </div>
         </div>
@@ -112,7 +115,7 @@
         </div>
         <br>
         <div> 
-            <h1>Completed Task</h1>
+            <h1>Today Completed Task</h1>
             {% if com %}
             {%for com in com%}
             <h4 style="color:white">{{com.task}}</h4>
